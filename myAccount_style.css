@@ -1,0 +1,103 @@
+body{
+    background-color: #FFFFFF;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.container-fluid{
+    background-image: url(greenbeach.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: #3366BB;
+    height: 5vw;
+    font-family: Urbana, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.container-fluid h1{
+    margin-left: 30%;
+    margin-top: -3.94vw;
+    width: 40vw;
+    text-align: center;
+    color: #2a2a2a;
+    font-size: 3vw;
+}
+
+#vert{
+    background-color: #eeeeee;
+    height: 52.8vw;
+    width: 100%;
+    margin-top: 0vw;
+}
+
+#vert .container{
+    background-color: aquamarine;
+    margin-left: 11vw;
+    width: 100%;
+    height: 100%;
+}
+
+#vert .container iframe{
+    background-color: #eeeeee;
+    margin-left: -1vw;
+    height: 100%;
+    width: 100%;
+}
+
+.container-fluid .dropdoown{
+    float: left;
+    background-color: aqua;
+}
+
+.container-fluid .dropdown .btn{
+    margin-left: -.99vw;
+    height: 5vw;
+    width: 5vw;
+    background-color: #2a2a2a;
+}
+
+.container-fluid #home{
+    float: right;
+    width: 5vw;
+    height: 5vw;
+    margin-top: -5vw;
+    margin-right: -1.94vw;
+}
+
+.container-fluid #home .btn{
+    margin-right: 0vw;
+    height: 5vw;
+    width: 5vw;
+    background-color: #2a2a2a;
+}
+
+.container-fluid #home a{
+    margin-right: 0vw;
+}
+
+.vertical-menu {
+    float: left;
+    width: 12vw;
+    height: 52.8vw;
+    margin-left: -1vw;
+    margin-top: 0vw;
+    overflow-y: auto;
+}
+
+.vertical-menu a {
+    background-color: #eeeeee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #cccccc;
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50;
+    color: white;
+}
