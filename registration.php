@@ -21,17 +21,17 @@
         $password = $conn->real_escape_string($password);
         $password_check = $conn->real_escape_string($password_check);
 
-        if ($password==$password_check){
+        if ($password==$password_check && strlen($password)<=100){
             $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
 
-            $check_email = $conn->prepare('SELECT email FROM users WHERE email = ?');
+            $check_email = $conn->prepare('SELECT email FROM '.$type.' WHERE email = ?');
             $check_email->bind_param('s', $email);
             $check_email->execute();
             $email_result = $check_email->get_result();
             $count = $email_result->num_rows;
 
-            if ($count==0){
-                $query = $conn->prepare("INSERT INTO users(username, email, password) VALUES(?, ?, ?)");
+            if ($count==0 && strlen($email)<=60 && strlen($username)<=60 && strlen($type)<=11){
+                $query = $conn->prepare("INSERT INTO ".$type."(username, email, password) VALUES(?, ?, ?)");
                 $query->bind_param('sss', $username, $email, $hashed_pass);
 
                 if ($query->execute()){
@@ -91,26 +91,26 @@
         <form method="post" id="registrate">
             </br>
             </br>
-            <select name="type">
-                <option value="0">Student Account</option>
-                <option value="1">Instructor Account</option>
+            <select name="type" size="2" required>
+                <option value="student" selected>Student Account</option>
+                <option value="instructor">Instructor Account</option>
             </select>
             </br>
             </br>
             Email Address:
-            <input id="mail" type="email" name="mail" placeholder="soandso@gmail.com..." autocomplete="Off" required/></br>
+            <input id="mail" type="email" name="mail" placeholder="soandso@gmail.com..." autocomplete="Off" maxlength="60" required/></br>
             </br>
             Username:
-            <input id="first" type="text" name="username" placeholder="John..." autocomplete="Off" required/></br>
+            <input id="first" type="text" name="username" placeholder="John..." autocomplete="Off" maxlength="60" required/></br>
             </br>
             Password:
-            <input id="last" type="password" name="password" placeholder="..." autocomplete="Off" required/></br></br>
+            <input id="last" type="password" name="password" placeholder="..." autocomplete="Off" maxlength="100" required/></br></br>
             Reenter Password:
-            <input id="last1" type="password" name="passwordCheck" placeholder="..." autocomplete="Off" required/></br>
+            <input id="last1" type="password" name="passwordCheck" placeholder="..." autocomplete="Off" maxlength="100" required/></br>
             <button id="bestbutton" type="submit" value="Submit" name="signed">SIGN UP</button>
         </form>
         <h3>Already have an account? Click the button below to sign in!</h3>
-        <form action="login.php" method="GET" id="back1">
+        <form action="studystation.php" method="GET" id="back1">
             <button id="bestbutton">LOGIN</button>
         </form>
    </div>

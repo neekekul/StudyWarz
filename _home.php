@@ -3,10 +3,10 @@
     include_once 'DatabaseConn.php';
 
     if (!isset($_SESSION['userSession'])){
-        header("Location: studentLogin.php");
+        header("Location: instructorLogin.php");
     }
 
-    $check_sesh = $conn->prepare("SELECT * FROM Student WHERE id = ?");
+    $check_sesh = $conn->prepare("SELECT * FROM Instructor WHERE id = ?");
     $check_sesh->bind_param('i', $_SESSION['userSession']);
     $check_sesh->execute();
     $check_sesh_result = $check_sesh->get_result();

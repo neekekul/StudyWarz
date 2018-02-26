@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-    <title>study_warz</title>
+    <title>study_station</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Study Warz Website">
     <meta name="author" content="Luke Keen">
@@ -26,8 +26,11 @@
         <h1>Study Station</h1>
     </div>
 <div id="head">
-    <form class="uno" action="login.php" method="GET">
-            <button id="bestbutton">LOGIN</button>
+    <form class="uno" action="studentLogin.php" method="GET">
+            <button id="bestbutton">STUDENT LOGIN</button>
+    </form>
+    <form class="uno" action="instructorLogin.php" method="GET">
+            <button id="bestbutton">INSTRUCTOR LOGIN</button>
     </form>
     <form class="uno" action="registration.php" method="get">
             <button id="bestbutton">REGISTER</button>
