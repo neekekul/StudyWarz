@@ -3,7 +3,7 @@
 
     require_once 'DatabaseConn.php';
 
-    if (isset($_SESSION['userSession'])!="") {
+    if (isset($_SESSION['instructorSession'])!="") {
         header("Location: _home.php");
         exit;
     }
@@ -27,7 +27,7 @@
         }
 
         if (password_verify($password, $row['password']) && $count==1){
-            $_SESSION['userSession'] = $row['id'];
+            $_SESSION['instructorSession'] = $row['id'];
             header("Location: _home.php");
         }
         else{

@@ -2,12 +2,12 @@
     session_start();
     include_once 'DatabaseConn.php';
 
-    if (!isset($_SESSION['userSession'])){
+    if (!isset($_SESSION['studentSession'])){
         header("Location: studentLogin.php");
     }
 
     $check_sesh = $conn->prepare("SELECT * FROM Student WHERE id = ?");
-    $check_sesh->bind_param('i', $_SESSION['userSession']);
+    $check_sesh->bind_param('i', $_SESSION['studentSession']);
     $check_sesh->execute();
     $check_sesh_result = $check_sesh->get_result();
     $user_row = mysqli_fetch_array($check_sesh_result);

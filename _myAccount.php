@@ -2,12 +2,12 @@
     session_start();
     include_once 'DatabaseConn.php';
 
-    if (!isset($_SESSION['studentSession'])){
-        header("Location: studentLogin.php");
+    if (!isset($_SESSION['instructorSession'])){
+        header("Location: instructorLogin.php");
     }
 
-    $check_sesh = $conn->prepare("SELECT * FROM Student WHERE id = ?");
-    $check_sesh->bind_param('i', $_SESSION['studentSession']);
+    $check_sesh = $conn->prepare("SELECT * FROM Instructor WHERE id = ?");
+    $check_sesh->bind_param('i', $_SESSION['instructorSession']);
     $check_sesh->execute();
     $check_sesh_result = $check_sesh->get_result();
     $user_row = mysqli_fetch_array($check_sesh_result);
@@ -47,16 +47,16 @@
         </div>
         <h1><strong><?php echo $user_row['username'];?></strong></h1>
         <div class="dropdown" id="home">
-            <a href="home.php" target="_self">
+            <a href="_home.php" target="_self">
                 <button class="btn btn-link dropdown-toggle" type="button"><span class="glyphicon glyphicon-home"></span></button>
             </a>
         </div>
     </div>
     <div class="container-fluid" id="vert">
         <div class="vertical-menu">
-            <a href="home.php" target="hub">myCourses</a>
+            <a href="_home.php" target="hub">myCourses</a>
             <a href="#" target="hub">myStudents</a>
-            <a href="#" target="hub">lessonFactory</a>
+            <a href="lessonFactory.php" target="hub">lessonFactory</a>
             <a href="#" target="hub">quizFactory</a>
             <a href="#" target="hub">courseTimelines</a>
             <a href="#" target="hub">studentReports</a>

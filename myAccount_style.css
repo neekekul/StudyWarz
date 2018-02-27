@@ -5,11 +5,16 @@ body{
 }
 
 .container-fluid{
-    background-image: url(greenbeach.png);
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-color: #3366BB;
+    background-color: #4E78A0;
     height: 5vw;
+    font-family: Urbana, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+#meat{
+    background-color: #eeeeee;
+    height: 53vw;
     font-family: Urbana, sans-serif;
     font-style: normal;
     font-weight: 600;
