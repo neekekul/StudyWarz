@@ -2,7 +2,7 @@
     session_start();
 
     if (!isset($_SESSION['studentSession'])){
-        header("Location: studentLogin.php");
+        header("Location: studystation.php");
     }
     elseif (isset($_SESSION['studentSession']) != ""){
         session_destroy();
@@ -11,7 +11,7 @@
     }
 
     if (!isset($_SESSION['instructorSession'])){
-        header("Location: instructorLogin.php");
+        header("Location: studystation.php");
     }
     elseif (isset($_SESSION['instructorSession']) != ""){
         session_destroy();
@@ -25,4 +25,4 @@
         unset($_SESSION['instructorSession']);
         header("Location: studystation.php");
     }
-?>
+

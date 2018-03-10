@@ -7,19 +7,15 @@
 
     require_once 'DatabaseConn.php';
 
+    $type = $username = $email = $password = $password_check = $msg = "";
+
     if(isset($_POST['signed'])) {
 
-        $type = htmlspecialchars($_POST['type']);
-        $username = htmlspecialchars($_POST['username']);
-        $email = htmlspecialchars($_POST['mail']);
-        $password = htmlspecialchars($_POST['password']);
-        $password_check = htmlspecialchars($_POST['passwordCheck']);
-
-        $type = $conn->real_escape_string($type);
-        $username =  $conn->real_escape_string($username);
-        $email = $conn->real_escape_string($email);
-        $password = $conn->real_escape_string($password);
-        $password_check = $conn->real_escape_string($password_check);
+        $type = validate_input_string($_POST['type'], $conn);
+        $username = validate_input_string($_POST['username'], $conn);
+        $email = validate_input_email($_POST['mail'], $conn);
+        $password = validate_input_string($_POST['password'], $conn);
+        $password_check = validate_input_string($_POST['passwordCheck'], $conn);
 
         if ($password==$password_check && strlen($password)<=100){
             $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
@@ -49,11 +45,23 @@
             $msg = "<div class='alert'>The passwords you entered do not match!</div>";
         }
 
-    $conn->close();
-
     }
 
+    function validate_input_string($data, $conn){
+        $data = htmlspecialchars($data);
+        $data = filter_var($data, FILTER_SANITIZE_STRING);
+        $data = $conn->real_escape_string($data);
+        return $data;
+    }
 
+    function validate_input_email($email, $conn){
+        $email = htmlspecialchars($email);
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $email = $conn->real_escape_string($email);
+        return $email;
+    }
+
+    $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en-US">

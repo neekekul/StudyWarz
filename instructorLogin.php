@@ -9,11 +9,8 @@
     }
 
     if(isset($_POST['signed'])) {
-        $email = htmlspecialchars($_POST['mail']);
-        $password = htmlspecialchars($_POST['password']);
-
-        $email = $conn->real_escape_string($email);
-        $password = $conn->real_escape_string($password);
+        $email = validate_input_email($_POST['mail'], $conn);
+        $password = validate_input_string($_POST['password'], $conn);
 
         $check_email = $conn->prepare('SELECT id, email, password FROM Instructor WHERE email = ?');
         $check_email->bind_param('s', $email);
@@ -34,10 +31,23 @@
             $msg = "<div class='alert'>Invalid Username or Password!</div>";
         }
 
-    $conn->close();
-
     }
 
+    function validate_input_string($data, $conn){
+        $data = htmlspecialchars($data);
+        $data = filter_var($data, FILTER_SANITIZE_STRING);
+        $data = $conn->real_escape_string($data);
+        return $data;
+    }
+
+    function validate_input_email($email, $conn){
+        $email = htmlspecialchars($email);
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $email = $conn->real_escape_string($email);
+        return $email;
+    }
+
+    $conn->close();
 
 ?>
 <!DOCTYPE html>

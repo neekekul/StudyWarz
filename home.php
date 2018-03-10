@@ -6,11 +6,14 @@
         header("Location: studentLogin.php");
     }
 
+
+
     $check_sesh = $conn->prepare("SELECT * FROM Student WHERE id = ?");
     $check_sesh->bind_param('i', $_SESSION['studentSession']);
     $check_sesh->execute();
     $check_sesh_result = $check_sesh->get_result();
     $user_row = mysqli_fetch_array($check_sesh_result);
+
     $conn->close();
 ?>
 <!DOCTYPE html>
@@ -38,7 +41,7 @@
 </head>
 <body id="okay">
     <div id="head">
-        <h1>Welcome- <?php echo $user_row['username']; ?></h1>
+        <h1>Welcome- <?php echo $user_row['username'];?></h1>
         <a href="myAccount.php" id="register" target="_self">
             <button class="bestbuttonh" type="submit" value="Submit" name="myAccount">ACCOUNT</button>
         </a></br></br>
